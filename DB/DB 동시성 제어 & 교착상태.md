@@ -117,24 +117,27 @@ Trade-Off관계에 있는 동시성과 데이터 일관성은 격리수준으로
         - **하지만 실제 레코드에 name=hjoon인 행이 존재하지 않는다.**
         - → `0 row(s) affected`(실제 레코드에 아무런 변경이 일어나지 않음)
 
+<br/>
+
 > DB 트랜잭션의 동시성 제어 방법
 > 
 - `Locking`⭐ : 트랜잭션이 데이터에 Lock을 설정하면 다른 트랜잭션은 Lock이 걸린 데이터가 Unlock될 때까지 접근, 수정, 삭제하지 못하도록 하는 제어 기법
-    
 - `Timestamp` : Timestamp(시스템에서 생성되는 고유 번호)를 트랜잭션에 부여하여 트랜잭션 접근 순서를 미리 정하는 제어 기법
     - 먼저 들어온(Timestamp가 더 빠른) 트랜잭션이 먼저 수행됨
 - `Validation 검증` : 트랜잭션을 먼저 수행하고 트랜잭션이 종료될 때 적합성을 검증하여 DB에 최종 반영하는 제어 기법
     - 각 트랜잭션은 메모리 상의 DB 복사본에서 연산을 수행하고 종료 시에 적합성 검증 후 DB에 최종 반영됨
+
+<br/>
 
 ## DB : Lock
 
 > DB Lock의 종류
 > 
 - `Shared Lock(S-Lock)` : 데이터에 읽기 연산을 수행할 때 설정하는 Lock
-    - S-Lock이 걸린 데이터에 다른 트랜잭션이 S-Lock을 걸 수 있고, X-Lock은 걸 수 없다
+    - **`"S-Lock이 걸린 데이터에 다른 트랜잭션이 S-Lock을 걸 수 있고, X-Lock은 걸 수 없다"`**
     - Select 쿼리를 수행하는 트랜잭션이 데이터에 S-Lock을 걸면 다른 트랜잭션들은 데이터를 읽을(Select) 순 있지만 변경(Update, Delete)할 수 없다.
 - `Exclusive Lock(X-Lock)` : 데이터에 쓰기 연산을 수행할 때 설정하는 Lock
-    - X-Lock이 걸린 데이터에 다른 트랜잭션은 S-Lock, X-Lock을 걸 수 없다
+    - **`"X-Lock이 걸린 데이터에 다른 트랜잭션은 S-Lock, X-Lock을 걸 수 없다"`**
     - 하나의 트랜잭션이 데이터에 X-Lock을 걸면, 트랜잭션이 종료될 때까지 X-Lock이 유지된다.
     - Update, Delete쿼리를 수행하는 트랜잭션이 데이터에 X-Lock을 걸면 다른 트랜잭션들은 데이터를 읽을 수도 변경할 수도 없다
 
@@ -146,6 +149,8 @@ Trade-Off관계에 있는 동시성과 데이터 일관성은 격리수준으로
 4. `Table Level` : Table과 Index에 Lock을 설정 (DDL Lock이라고 불리기도 함)
 5. `Database Level` : 데이터베이스 복구, 스키마 변경시 설정되는 Lock
 
+<br/>
+
 ## DB : Blocking
 
 DB에서 하나의 데이터에 Lock을 걸려는 트랜잭션간에 Race Condition이 발생한 경우, 특정 트랜잭션이 작업을 진행하지 못하게 막은 상태를 `Blocking` 이라고 한다.
@@ -154,15 +159,23 @@ DB에서 하나의 데이터에 Lock을 걸려는 트랜잭션간에 Race Condit
 
 > DB Blocking 예시
 > 
-- S-Lock이 설정된 데이터에 접근하려는 트랜잭션은 Blocking 되지 않는다. (`S-Lock + S-Lock`)
+- S-Lock이 설정된 데이터를 Read하려는 트랜잭션은 **Blocking 되지 않는다.** (`S-Lock 👈 S-Lock`)
     
     ```java
     1. 트랜잭션1이 데이터a를 읽고 있음 // 데이터a에 S-Lock이 걸림
     2. 트랜잭션2는 데이터a를 읽기 위해 S-Lock을 걸려 함 // 걸 수 있음
     3. 트랜잭션2는 데이터a를 읽음
     ```
+
+- S-Lock이 설정된 데이터를 Update, Delete하려는 트랜잭션은 **Blocking 된다.** (`S-Lock 👈 X-Lock`)
     
-- X-Lock이 설정된 데이터에 접근하려는 트랜잭션은 Blocking 된다. (`S-Lock + X-Lock 또는 X-Lock + X-Lock`)
+    ```java
+    1. 트랜잭션1이 데이터a를 읽고 있음 // 데이터a에 S-Lock이 걸림
+    2. 트랜잭션2는 데이터a를 변경하기 위해 X-Lock을 걸려 함 // 걸 수 없음
+    3. 트랜잭션2는 Blocking 됨 // 트랜잭션1이 S-Lock을 해제할 때까지
+    ```
+
+- X-Lock이 설정된 데이터를 Read, Update, Delete하려는 트랜잭션은 **Blocking 된다.** (`X-Lock 👈 S-Lock 또는 X-Lock 👈 X-Lock`)
     
     ```java
     1. 트랜잭션1이 데이터a를 변경하고 있음 // 데이터a에 X-Lock이 걸림
@@ -182,6 +195,8 @@ DB에서 하나의 데이터에 Lock을 걸려는 트랜잭션간에 Race Condit
 - 동일한 데이터를 변경하는 트랜잭션이 동시에 수행되지 않도록 설계한다
 - 트랜잭션 격리수준을 필요이상으로 상향 조정하지 않는다.
 
+<br/>
+
 ## DB : Dead Lock
 
 `DB 트랜잭션 간에 발생하는 교착 상태`란 서로 다른 두 트랜잭션이 각자 데이터에 Lock을 걸어두고, 서로의 데이터에 접근하기 위해 Unlock될 때까지 무한정 대기하는 상태이다.
@@ -190,24 +205,28 @@ DB에서 하나의 데이터에 Lock을 걸려는 트랜잭션간에 Race Condit
 > 
 
 ```java
+1. 트랜잭션1이 데이터a에 X-Lock을 걸어둠
+2. 트랜잭션2가 데이터b에 X-Lock을 걸어둠
+3. 트랜잭션1은 데이터b에 접근하려하고, 트랜잭션2는 데이터a에 접근하려 함
+```
+
+트랜잭션1과 2는 각자 접근하려는 데이터가 Unlock되기를 기다리기 때문에 Blocking 상태가 된다. 결국 트랜잭션1과 2는 다음 연산(쿼리)을 진행하지 못한 채 무한정 대기 상태에 빠진다.
+
+> 참고 예시
+
+```java
 1. 트랜잭션1이 데이터a에 S-Lock을 걸어두고 sleep 상태가 됨
 2. 트랜잭션2가 데이터a에 X-Lock을 걸려고 함
 ```
 
 트랜잭션2는 트랜잭션1이 S-Lock을 해제할 때까지 무한정 대기 해야함
 
-```java
-1. 트랜잭션1이 데이터a에 X-Lock을 걸어둠
-2. 트랜잭션2가 데이터b에 X-Lock을 걸어둠
-3. 트랜잭션1은 데이터b에 접근하려하고, 트랜잭션2는 데이터a에 접근하려 함
-```
-
-트랜잭션1과 2는 각자 접근하려는 데이터가 Unlock되기를 기다리기 때문에 Blocking 상태가 된다. 결국 트랜잭션1과 2는 다음 연산을 진행하지 못한 채 무한정 대기 상태에 빠진다.
-
 > DB Dead Lock 해결 방안
 > 
 1. DB Dead Lock이 감지되면 둘 중 하나의 트랜잭션을 강제로 종료시킨다.
 2. 트랜잭션간의 접근 순서 규칙을 정한다.
+
+<br/>
 
 ## DB Blocking vs DB Dead Lock
 
