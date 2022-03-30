@@ -358,7 +358,7 @@ B+Tree는 B-Tree의 leaf node들을 LinkedList로 연결한 것이다. LinkedLis
 
 ## Hint
 
-Hint란 SQL 문장에 특별한 키워드를 지정하여 Optimizer에게 효과적으로 데이터를 읽기 위한 방법을 알려주는 키워드이다.
+Hint란 SQL 문장에 특별한 키워드를 지정하여 옵티마이저에게 어떻게 데이터를 읽는 것이 효과적인지 알려주는 키워드를 의미한다.
 
 > Hint의 사용방법
 > 
