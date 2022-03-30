@@ -119,6 +119,7 @@ leaf node에서 인덱스 칼럼값에 대응되는 물리적 주소로 데이�
 > 
 - 인덱스의 크기가 테이블의 크기보다 훤씬 작기 때문에 Index Full Scan이 Table Full Scan보다 빠르다
 - 인덱스 선두 칼럼(탐색의 시작점)이 조건절에 없거나, 끝까지 스캔하는 경우 Table Full Scan을 고려해야 한다
+    - Index Full Scan은 랜덤 IO가 자주 발생하지만 Table Full Scan의 경우 한번에 큰 block을 긁어오기 때문에 IO가 덜 발생한다?(뇌피셜)
 - Table Full Scan보다 IO를 줄일 수 있거나 정렬된 결과를 얻으려 할 때 Index Full Scan을 고려한다.
 
 ## Index 종류
