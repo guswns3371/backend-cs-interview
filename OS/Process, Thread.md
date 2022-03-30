@@ -23,6 +23,8 @@
 
 ![Untitled](Process,%20T%20b6901/Untitled.png)
 
+![image](https://user-images.githubusercontent.com/44316546/160866327-878ced81-58d1-48c3-a991-e6020706897d.png)
+
 - `Running` : CPU 점유권을 가지고 명령을 수행중인 상태
 - `Ready` : 메모리에 적재되어 바로 명령을 수행할 수 있는 조건을 만족하는 상태(Ready Queue에 대기중)
 - `Blocked(Wait, Sleep)` : CPU를 할당받더라도 당장 명령을 수행하지 못하는 상태 (IO 작업처럼 요청한 이벤트가 바로 수행 결과를 반환하지 않아 다음 명령을 수행하지 못하는 상태)
