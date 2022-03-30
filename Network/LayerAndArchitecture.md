@@ -38,7 +38,7 @@
     - `디코딩` : 아날로그 신호를 비트 데이터로 변환하는 것
     - 데이터 전송시에 잡음, 간섭, 왜곡, 지연 등의 영향을 받는다. (데이터링크 계층의 필요성)
 
-[https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdF3tiC%2Fbtrj9kybwlX%2FC8YHjghkXQszunfEyKyasK%2Fimg.png](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdF3tiC%2Fbtrj9kybwlX%2FC8YHjghkXQszunfEyKyasK%2Fimg.png)
+![https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdF3tiC%2Fbtrj9kybwlX%2FC8YHjghkXQszunfEyKyasK%2Fimg.png](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdF3tiC%2Fbtrj9kybwlX%2FC8YHjghkXQszunfEyKyasK%2Fimg.png)
 
 `PDU(Protocol Data Unit)` : 각 프로토콜 스택 계층의 데이터 단위 (PDU = SDU + PCI)
 
