@@ -248,7 +248,7 @@ Unique 인덱스가 아닌 인덱스들이다.
 
 ![exBtree2.png](Index%204e054/exBtree2.png)
 
-***MySQL은 B-Tree Index를 사용한다.***
+***MySQL은 기본적으로 B-Tree Index를 사용한다. MySQL의 InnoDB는 B-Tree의 확장된 버전인 B+Tree를 사용한다.***
 
 ### `🧩Hash Index`
 
