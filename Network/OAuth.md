@@ -28,19 +28,10 @@ OAuth1.0은 절차가 복잡하고 앱에서 사용하기 곤란하다는 단점
 
 | 비교 | OAuth1.0 | OAuth2.0 |
 | --- | --- | --- |
-| 역할 (역할 명칭 변경 및 세분화) | 이용자(User)
-소비자(Consumer)
-서비스 제공자(Service Provider) | 자원소유자(Resource Owner)
-클라이언트(Client)
-자원 서버(Resource Server)
-권한 서버(Authorization Server) |
-| 토큰 | 요청 토큰 (Request Token)
-접근 토큰 (Access Token) | 접근 토큰 (Access Token)
-재발급 토큰 (Refresh Token) |
-| API 호출 인증 및 보안 | 서명 | HTTPS(SSL/TLS) 기본
-서명 : 자원 서버가 별도 서명을 요구하는 경우 |
-| 유효기간 | Access Token의 유효기간 없음 | Access Token 유효기간 부여
-만료 시 Refresh Token 이용 |
+| 역할 (역할 명칭 변경 및 세분화) | 이용자(User)<br/>소비자(Consumer)<br/>서비스 제공자(Service Provider) | 자원소유자(Resource Owner)<br/>클라이언트(Client)<br/>자원 서버(Resource Server)<br/>권한 서버(Authorization Server) |
+| 토큰 | 요청 토큰 (Request Token)<br/>접근 토큰 (Access Token) | 접근 토큰 (Access Token)<br/>재발급 토큰 (Refresh Token) |
+| API 호출 인증 및 보안 | 서명 | HTTPS(SSL/TLS) 기본<br/>서명 : 자원 서버가 별도 서명을 요구하는 경우 |
+| 유효기간 | Access Token의 유효기간 없음 | Access Token 유효기간 부여<br/>만료 시 Refresh Token 이용 |
 | 클라이언트 | 웹 | 웹, 앱 등 |
 
 > OAuth 2.0 용어
@@ -49,11 +40,9 @@ OAuth1.0은 절차가 복잡하고 앱에서 사용하기 곤란하다는 단점
 | 용어 | 설명 |
 | --- | --- |
 | Resource Server | OAuth2.0 서비스를 제공하고 자원을 관리하는 서버(구글,카카오, 네이버 등등) |
-| Authorization Server | Client가 Resource Server의 서비스를 사용할 수 있게 토큰을 발급해주는 서버
-(구글, 카카오, 네이버 등) |
+| Authorization Server | Client가 Resource Server의 서비스를 사용할 수 있게 토큰을 발급해주는 서버<br/>(구글, 카카오, 네이버 등) |
 | Client | Resource Server의 API를 사용하여 데이터를 가져오려고 하는 사이트(현재 이용중인 서비스의 백엔드 서버) |
-| Resource Owner | Resource Server의 계정을 소유하고 있는 사용자
-(서비스를 이용하는 사용자) |
+| Resource Owner | Resource Server의 계정을 소유하고 있는 사용자<br/>(서비스를 이용하는 사용자) |
 | Access Token | Resource Server에 자원을 요청할 수 있는 토큰 |
 | Refresh Token | Authorization Server에 Access Token 재발급 받기 위해 사용되는 토큰 |
 
