@@ -38,10 +38,8 @@
 > 프로세스의 상태 전이
 > 
 
-`New → Ready` : 프로세스가 생성되면 Ready Queue에서 CPU 점유권을 얻기 위해 대기중인 Ready 상태가 된다.
-
-`Ready → Running` : Ready 상태의 프로세스가 CPU 점유권을 얻으면 작업을 수행할 수 있는 Running 상태가 된다.
-
+- `New → Ready` : 프로세스가 생성되면 Ready Queue에서 CPU 점유권을 얻기 위해 대기중인 Ready 상태가 된다.
+- `Ready → Running` : Ready 상태의 프로세스가 CPU 점유권을 얻으면 작업을 수행할 수 있는 Running 상태가 된다.
 - `Running → Terminated` : 프로세스의 수행이 끝나 CPU 점유권을 반환할 경우
 - `Running → Waiting` : 수행 결과를 바로 반환하지 못하는 작업(IO 또는 공유 데이터)을 수행할 경우
     - Running 상태의 프로세스가 IO 작업을 수행하면 IO Queue에 들어가 Blocked 상태가 된다. (공유 데이터에 접근할 경우 Resource Queue에 들어가 Blocked 상태가 된다)
