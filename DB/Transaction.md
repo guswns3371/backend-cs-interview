@@ -123,6 +123,8 @@ DB에서 `동시성 제어` 란 데이터 일관성을 유지하기 위해 동�
 
 ![Untitled](Transactio%2099593/Untitled.png)
 
+[참고: dirty read, non repeatable read, phantom read](https://docs.microsoft.com/en-us/sql/odbc/reference/develop-app/transaction-isolation-levels?view=sql-server-ver15#:~:text=Dirty%20Reads%20A,set%20of%20rows.)
+
 - `Dirty Read`
     
     아직 실행이 끝나지 않은 다른 트랜잭션에 의한 변경사항을 보게되는 경우, 무효가 된 데이터를 읽어 발생하는 문제
@@ -154,7 +156,7 @@ DB에서 `동시성 제어` 란 데이터 일관성을 유지하기 위해 동�
     2. 트랜잭션2이 테이블T에 데이터B를 추가함(insert) -> "데이터A : 1, 데이터B : 2"
     3. 트랜잭션1이 테이블T를 읽음 -> "데이터A : 1, 데이터B : 2" // 유령 데이터B가 나타남
     ```
-    
+
 
 ## 트랜잭션 격리수준
 
