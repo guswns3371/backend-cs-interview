@@ -103,7 +103,8 @@ TCP/IP 계층은 2가지 버전이 있다 → `TCP/IP Original(4계층)`, `TCP/I
 
 `IPv4 와 IPv6의 헤더`
 
-![http://www.ktword.co.kr/img_data/5185_1.JPG](http://www.ktword.co.kr/img_data/5185_1.JPG)
+![image](https://user-images.githubusercontent.com/44316546/161203892-2625c2df-81c1-4a44-b9fe-3e809eca0665.png)
+
 
 |  | IPv4(Internet Protocol Version 4) | IPv6(Internet Protocol Version 6) |
 | --- | --- | --- |
