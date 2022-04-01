@@ -121,11 +121,9 @@ scope에 `openid` 를 설정하고, Authorization Server로부터 `AccessToken`�
 
 ![Untitled](OAuth%203ae5b/Untitled%202.png)
 
-<aside>
-📎 ID Token은 사용자 인증용 토큰이고, AccessToken은 구글, 네이버의 자원에 접근하기 위해 사용되는 토큰이다. (인증 → ID Token, 인가 → AccessToken)
+>📎 ID Token은 사용자 인증용 토큰이고, AccessToken은 구글, 네이버의 자원에 접근하기 위해 사용되는 토큰이다. (인증 → ID Token, 인가 → AccessToken)
+>
+>서버는 ID Token을 HTTPS를 사용하여 브라우저나 앱과 같은 클라이언트에게 전달하고, 클라이언트는 request의 Authorization 헤더에 ID Token을 담아 서버로 요청을 보낸다.
+>
+>ID Token 유효성 검사를 한 뒤, 만약 만료되었다면 Refresh Token을 OpenId Provider에 보내어 ID Token을 재발급 받는다.
 
-서버는 ID Token을 HTTPS를 사용하여 브라우저나 앱과 같은 클라이언트에게 전달하고, 클라이언트는 request의 Authorization 헤더에 ID Token을 담아 서버로 요청을 보낸다.
-
-ID Token 유효성 검사를 한 뒤, 만약 만료되었다면 Refresh Token을 OpenId Provider에 보내어 ID Token을 재발급 받는다.
-
-</aside>
