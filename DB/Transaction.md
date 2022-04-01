@@ -112,10 +112,8 @@ SET TRANSACTION ISOLATION LEVEL READ COMMITTED
 - `Update 쿼리가 수행되는 동안` 해당 데이터에 X-Lock이 걸린다
 - 다른 트랜잭션의 `S-Lock`이 걸린 데이터를 읽을 수 있지만 `X-Lock`이 걸린 데이터는 읽지 못한다.
     
-    <aside>
-    📎 갱신되는 데이터에 X-Lock이 걸려있고, X-Lock이 걸린 데이터를 다른 트랜잭션이 읽지 못한다 → **Dirty Read 문제 해결**
+    > 📎 갱신되는 데이터에 X-Lock이 걸려있고, X-Lock이 걸린 데이터를 다른 트랜잭션이 읽지 못한다 → **Dirty Read 문제 해결**
     
-    </aside>
     
 - 대부분의 DBMS에서 기본으로 채택하고 있는 격리수준이다.
     - MySQL(InnoDB), Orcale : Lock을 사용하지 않고 쿼리 시작 시점의 Undo 데이터를 제공하는 방식으로 구현한다
@@ -136,10 +134,8 @@ SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
 - `Update 쿼리가 수행되는 동안` 해당 데이터에 X-Lock이 걸린다
 - 다른 트랜잭션의 `S-Lock`이 걸린 데이터를 읽을 수 있지만 `X-Lock`이 걸린 데이터는 읽지 못한다.
     
-    <aside>
-    📎 트랜잭션이 수행되는 동안 데이터에 설정된 S-Lock이 종료될 때까지 유지되므로 다른 트랜잭션에서 해당 데이터를 update(쓰기)할 수 없다 → **Non-Repeatable Read 문제를 해결**
+    >📎 트랜잭션이 수행되는 동안 데이터에 설정된 S-Lock이 종료될 때까지 유지되므로 다른 트랜잭션에서 해당 데이터를 update(쓰기)할 수 없다 → **Non-Repeatable Read 문제를 해결**
     
-    </aside>
     
 - MySQL 에서 기본으로 채택하고 있는 격리 수준이다.
 
@@ -160,10 +156,8 @@ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE
 - 다른 트랜잭션의 `S-Lock`이 걸린 데이터를 읽을 수 있지만 `X-Lock`이 걸린 데이터는 읽지 못한다.
 - `테이블 인덱스에 S-Lock을 설정하여 다른 트랜잭션의 Insert 문이 금지된다`
     
-    <aside>
-    📎 트랜잭션이 수행되는 동안 해당 테이블에 다른 트랜잭션의 Insert 문이 금지된다 → **Phantom Read 문제를 해결**
+    > 📎 트랜잭션이 수행되는 동안 해당 테이블에 다른 트랜잭션의 Insert 문이 금지된다 → **Phantom Read 문제를 해결**
     
-    </aside>
     
 - 제한이 가장 심하고 동시성도 매우 낮아 DB 성능이 좋지 않다. DBMS에서 거의 사용되지 않는다.
 
