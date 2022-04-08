@@ -129,27 +129,11 @@ Redis는 싱글 스레드를 사용하기 때문에 연산을 원자적으로 �
 
 | 종류 | 설명 |
 | --- | --- |
-| String | 가장 일반적인 형태의 자료구조  
-- key → string
-- string 타입에 이진 데이터를 포함한 모든 종류의 문자열을 저장할 수 있다. (JPEG, HTML)
-- 레디스의 키가 문자열이므로 이 구조는 문자열을 다른 문자열에 매핑하는 것 |
-| List | LinkedList 특징을 가진 자료구조
-- key → 여러 list 원소
-- list 내에 수백만 개의 아이템이 있더라도 head와 tail에 값을 추가할 때 동일한 시간이 소요된다.
-- Pub-Sub 패턴 : 생산자가 데이터를 만들어 list에 넣으면 소비자가 list에서 데이터를 꺼내 액션을 수행한다
-- 트위터에서는 각 유저의 타임라인을 보여주기 위해 Redis의 list를 사용한다 |
-| Hash | field-value 쌍의 일반적인 해시 자료구조  
-- key → 여러 fleld-value 쌍의 데이터
-- key에 대한 field 개수에 제한이 없다  
-- RDB의 테이블과 비슷하다 (hash key는 table의 PK, field는 column, value는 value) |
-| Set | set은 정렬되지 않고 중복되지 않는 문자열의 모음
-- key → 순서가 없고 중복되지 않는 여러 데이터
-- 객체 간의 관계를 표현할 때 좋다
-- 교집합, 합집합, 차집합 연산을 수행할 수 있다 |
-| Sorted Set | 정렬되고 중복되지 않는 문자열의 모음
-- key → 중복되지 않는 member-score 쌍의 여러 데이터
-- 저장되는 데이터는 score를 기준으로 정렬된다. (score값이 동일하다면 member의 사전 순서로 정렬)
-- 데이터가 정렬되어있기 때문에 인덱스로 빠른 조회가 가능 |
+| String | 가장 일반적인 형태의 자료구조<br/>- `key → string`<br/>- string 타입에 이진 데이터를 포함한 모든 종류의 문자열을 저장할 수 있다. (JPEG, HTML)<br/>- 레디스의 키가 문자열이므로 이 구조는 문자열을 다른 문자열에 매핑하는 것 |
+| List | LinkedList 특징을 가진 자료구조<br/>- `key → 여러 list 원소`<br/>- list 내에 수백만 개의 아이템이 있더라도 head와 tail에 값을 추가할 때 동일한 시간이 소요된다.<br/>- Pub-Sub 패턴 : 생산자가 데이터를 만들어 list에 넣으면 소비자가 list에서 데이터를 꺼내 액션을 수행한다<br/>- 트위터에서는 각 유저의 타임라인을 보여주기 위해 Redis의 list를 사용한다 |
+| Hash | field-value 쌍의 일반적인 해시 자료구조  <br/>- `key → 여러 fleld-value 쌍의 데이터`<br/>- key에 대한 field 개수에 제한이 없다  <br/>- RDB의 테이블과 비슷하다 (hash key는 table의 PK, field는 column, value는 value) |
+| Set | set은 정렬되지 않고 중복되지 않는 문자열의 모음<br/>- `key → 순서가 없고 중복되지 않는 여러 데이터`<br/>- 객체 간의 관계를 표현할 때 좋다<br/>- 교집합, 합집합, 차집합 연산을 수행할 수 있다 |
+| Sorted Set | 정렬되고 중복되지 않는 문자열의 모음<br/>- `key → 중복되지 않는 member-score 쌍의 여러 데이터`<br/>- 저장되는 데이터는 score를 기준으로 정렬된다. (score값이 동일하다면 member의 사전 순서로 정렬)<br/>- 데이터가 정렬되어있기 때문에 인덱스로 빠른 조회가 가능 |
 
 ## 주의 사항
 
