@@ -47,7 +47,7 @@ CPU 스케쥴러에 의해 선택된 프로세스에게 CPU 제어권을 넘겨�
 
 ## CPU 스케쥴링 성능 평가 척도
 
-![Untitled](CPUScheduling/Untitled.png)
+<img src="CPUScheduling/Untitled.png" width="650">
 
 > 시스템 입장에서의 CPU 스케쥴링 성능 척도
 > 
