@@ -83,8 +83,7 @@ Redis는 데이터의 영속성을 보장하기 위해 데이터를 디스크에
 Redis의 데이터를 디스크에 저장하는 방식에 2가지가 존재한다. ([참고](https://rmcodestar.github.io/redis/2018/12/10/redis-persistence/))
 
 1. `RDB(Snapshotting) 방식` : 한 순간에 메모리 속 데이터 전체를 바이너리 파일(.rdb)로 저장하는 방식
-    
-    ![https://raw.githubusercontent.com/rmcodestar/rmcodestar.github.io/master/public/img/20190427-rdb.jpeg](https://raw.githubusercontent.com/rmcodestar/rmcodestar.github.io/master/public/img/20190427-rdb.jpeg)
+    <img src="https://raw.githubusercontent.com/rmcodestar/rmcodestar.github.io/master/public/img/20190427-rdb.jpeg" width="600"/>
     
     - 장점
         - 메모리의 스냅샷을 파일로 저장하기 때문에 Redis 서버를 재부팅할 경우 해당 파일만 불러 오면 된다
@@ -92,8 +91,7 @@ Redis의 데이터를 디스크에 저장하는 방식에 2가지가 존재한�
     - 단점
         - 메모리 스냅샷을 파일로 추출하는 시간이 오래걸린다. 추출 중간에 장애가 발생하면 마지막 스냅샷 이후의 데이터를 모두 잃을 수 있다.
 2. `AOF(Append On File) 방식` : Redis의 모든 write, update 연산 자체를 log 파일(.aof)에 기록하는 방식
-    
-    ![https://raw.githubusercontent.com/rmcodestar/rmcodestar.github.io/master/public/img/20190427-aof.jpeg](https://raw.githubusercontent.com/rmcodestar/rmcodestar.github.io/master/public/img/20190427-aof.jpeg)
+    <img src="https://raw.githubusercontent.com/rmcodestar/rmcodestar.github.io/master/public/img/20190427-aof.jpeg" width="600"/>
     
     - 장점
         - 데이터 유실이 발생하지 않는다
