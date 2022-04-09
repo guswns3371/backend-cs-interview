@@ -133,7 +133,7 @@ CPU가 Read와 Write 연산을 하나의 명령어로 수행하지 못하기 때
 condition x, y;
 ```
 프로세스가 monitor 안에서 기다릴 수 있도록 `조건 변수(Condition Variable)`를 사용할 수 있다. 
-- 모니터는 조건 변수를 사용하여 공유 자원의 개수를 센다.
+- 모니터는 조건 변수를 사용하여 가용 공유 자원의 개수를 센다.
 - 조건 변수는 wait()와 signal() 연산에 의해서만 접근 가능하다.
     - `x.watit()` 을 호출한 프로세스는 다른 프로세스가 `x.signal()` 을 호출하기 전까지 suspend된다.
     - `x.signal()` 은 정확하게 하나의 suspended된 프로세스를 깨운다. 만약 suspended된 프로세스가 없으면 아무 일도 일어나지 않는다.
