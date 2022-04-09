@@ -125,7 +125,7 @@ CPU burst가 짧은 프로세스에게 우선적으로 CPU 제어권을 할당�
 - 장점
     - `각 프로세스마다 CPU를 최초로 얻기까지 걸리는 시간(Response Time)이 짧다` : Ready Queue에 `n`개의 프로세스가 있고 할당 시간이 `q`이라면, 모든 프로세스들은 `(n-1)*q` 보다 짧은 응답시간을 갖는다.
 - 단점
-    - `Turnaround Time(반환 시간)이 길다` :  RR 스케쥴링을 사용하면 모든 프로세스들의 응답시간이 짧아지지만 Ready Queue에서 대기하는 시간이 모두 많아지기 때문이다. (Turnaround Time과 Response Time은 Trade-Off 관계)
+    - `Turnaround Time(반환 시간)이 길다` :  RR 스케쥴링을 사용하면 모든 프로세스들의 Ready Queue에서 대기하는 시간이 길어지기 때문이다. (Turnaround Time과 Response Time은 Trade-Off 관계)
 - time quantum q에 따른 특징
     - q를 매우 크게 잡으면 → FCFS와 같아진다
     - q를 매우 작게 잡으면 → Context Switch가 많아져 오버헤드가 커진다
