@@ -118,7 +118,9 @@ CPU가 Read와 Write 연산을 하나의 명령어로 수행하지 못하기 때
 
 ### `Monitor`
 
-![Untitled](ProcessSynchronization/Untitled.png)
+<p align="center">
+  <img src="ProcessSynchronization/Untitled.png"/>
+</p>
 
 프로그래밍 언어 차원에서 동기화 문제를 해결하는 고수준의 동기화 추상화 데이터형이다.
 
@@ -126,8 +128,9 @@ CPU가 Read와 Write 연산을 하나의 명령어로 수행하지 못하기 때
 - 모니터 내부에 `공유 데이터(shared data)`와 이에 접근하기 위한 `연산(operations = procedures)`들을 정의해두어야 한다. 정의해둔 연산으로만 공유 데이터에 접근할 수 있다.
 - 모니터는 원척적으로 내부의 procedure들이 동시에 실행되지 않도록 통제하기 때문에 프로그래머가 직접 Lock을 걸 필요가 없다 (Java의 synchronized, volatile 키워드)
 
-![Untitled](ProcessSynchronization/Untitled%201.png)
-
+<p align="center">
+  <img src="ProcessSynchronization/Untitled%201.png"/>
+</p>
 
 ```
 condition x, y;
