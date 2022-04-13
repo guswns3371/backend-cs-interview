@@ -1,4 +1,4 @@
-# Paging
+# Virtual Memory
 
 ## Demanding Paging(요구 페이징)
 
