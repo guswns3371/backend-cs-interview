@@ -7,5 +7,8 @@ backend-cs-interview<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [CPU Scheduling](CPUScheduling.md)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [동기&비동기, 블로킹&논블로킹](%EB%8F%99%EA%B8%B0%26%EB%B9%84%EB%8F%99%EA%B8%B0%2C%20%EB%B8%94%EB%A1%9C%ED%82%B9%26%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9.md)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [ProcessSynchronization](ProcessSynchronization.md)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [메모리 주소 관리](%EB%A9%94%EB%AA%A8%EB%A6%AC%20%EC%A3%BC%EC%86%8C%20%EA%B4%80%EB%A6%AC.md)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [메모리 연속 할당 (Fixed, Variable)](%EB%A9%94%EB%AA%A8%EB%A6%AC%20%EC%97%B0%EC%86%8D%20%ED%95%A0%EB%8B%B9.md)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [메모리 불연속 할당 (Paging, Segmentation)](%EB%A9%94%EB%AA%A8%EB%A6%AC%20%EB%B6%88%EC%97%B0%EC%86%8D%20%ED%95%A0%EB%8B%B9.md)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [VirtualMemory](VirtualMemory.md)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [PageReplacement](PageReplacement.md)<br/>
