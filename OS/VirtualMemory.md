@@ -16,7 +16,7 @@ page에 대한 요청이 있을 때 메모리에 적재하는 기법이다.
 | page | page frame | valid/invalid bit |
 | --- | --- | --- |
 | 0 | 4 | v |
-| 1 |  | i |
+| 1 | - | i |
 
 page table에는 “`page frame`-`valid/invalid bit`" 쌍의 정보가 담겨 있다.
 
