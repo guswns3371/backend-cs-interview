@@ -69,7 +69,7 @@ page fault가 발생하였고 empty page frame가 없을 때, 메모리에 적�
 2. `1,2` → 1,2번 페이지를 다시 참조할 경우 hit
 3. `5` → 5번 페이지를 참조할 경우 page fault 발생 & empty page frame이 없음
 
-현재 시점(5) 이전의 `과거 Page Reference String(3, 4, 1, 2)을 참고`하여 가장 오래전에 참조된 3번 페이지를 victim page를 선정하여 교체한다.
+현재 시점(5) 이전의 `과거 Page Reference String(1, 2, 3, 4, 1, 2)을 참고`하여 가장 오래전에 참조된 3번 페이지를 victim page를 선정하여 교체한다.
 
 ### `LFU(Least Frequently Used) Algorithm`
 
