@@ -69,7 +69,7 @@ page fault가 발생하였고 empty page frame가 없을 때, 메모리에 적�
 2. `1,2` → 1,2번 페이지를 다시 참조할 경우 hit
 3. `5` → 5번 페이지를 참조할 경우 page fault 발생 & empty page frame이 없음
 
-현재 시점(5) 이전의 `과거 Page Reference String(3, 4, 1, 2)을 참고`하여 가장 오래전에 참조된 3번 페이지를 victim page를 선정하여 교체한다.
+현재 시점(5) 이전의 `과거 Page Reference String(1, 2, 3, 4, 1, 2)을 참고`하여 가장 오래전에 참조된 3번 페이지를 victim page를 선정하여 교체한다.
 
 ### `LFU(Least Frequently Used) Algorithm`
 
@@ -135,8 +135,8 @@ page fault가 발생하면 운영체제가 CPU 제어권을 가지고 새로운 
 1. CPU가 페이지를 참조하면 해당 페이지의 reference bit를 1로 설정한다.
 2. 운영체제는 포인터를 이동시키면서 페이지의 reference bit가 1인 것을 0으로 변경한다.
 3. 두 번째 바퀴에서(second chance)
-    - `reference bit = 1, modified bit = 0` → swap out
-    - `reference bit = 1, modified bit = 1` → modified bit를 0으로 변경하고 포인터를 한 칸 이동한다. (변경된 내용을 disk에 write해야 하기 때문에)
+    - `reference bit = 0, modified bit = 0` → swap out
+    - `reference bit = 0, modified bit = 1` → modified bit를 0으로 변경하고 포인터를 한 칸 이동한다. (변경된 내용을 disk에 write해야 하기 때문에)
 
 ## Page Frame 할당
 

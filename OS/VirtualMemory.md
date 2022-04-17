@@ -42,11 +42,11 @@ CPU가 접근하려는 page가 물리적 메모리에 적재되어 있지 않은
     
 2. `empty page frame를 선택한다`
     
-    비어있는 page frame이 없다면 page replacement 알고리즘으로 victim page를 선택하여 디스크로 쫒아낸다(swap out)
+    비어있는 page frame이 없다면 page replacement 알고리즘으로 victim page를 선택하여 디스크로 쫒아낸다(swap out). 쫓아내는 page의 내용이 변경되었다면 이를 backing store에 write해야한다.
     
 3. `디스크에서 n번 페이지를 empty page frame에 적재한다`
     1. n번 page를 찾기 위해 디스크 IO 작업이 진행되므로 context switch가 일어난다. (디스크 IO작업이 끝날 때까지 해당 프로세스는 blocked된다)
-    2. 디스크 read 작업을 마치고 n번 page를 empty page frame에 적재(swap in)한다. (empty page frame이 없으면 page replacement 작업이 추가된다)
+    2. 디스크 read 작업을 마치고 n번 page를 empty page frame에 적재(swap in)한다.
     3. page table의 valid/invalid bit를 “valid”로 설정한다.
 4. `blocked된 프로세스는 ready 상태로 변경되고 -> CPU 제어권을 얻고 -> Context Switch가 일어나 이전 명령부터 실행된다`
 
@@ -56,7 +56,7 @@ CPU가 접근하려는 page가 물리적 메모리에 적재되어 있지 않은
 **Page Fault Handler 처리 과정은 “하드웨어 작업 & 디스크 IO 작업 & Context Switch”가 동반되는 작업이므로 큰 비용이 발생한다.**
 
 - CPU 제어권이 프로세스에서 운영체제로 넘어감 → `Context Switch`
-- 하드웨어(MMU)적으로 page fault handling → `오버헤드`
+- 하드웨어(MMU)적으로 page fault handling → `하드웨어 작업으로 인한 오버헤드`
 - empty page frame이 없다면 → `page replacement 작업 & Disk IO작업(swap out)`
 - 디스크에서 읽어온 page를 메모리에 적재 → `Disk IO작업(swap in)`
 - 프로세스가 다시 CPU 제어권을 얻은 뒤에 이전 작업이 재개 → `Context Switch`
