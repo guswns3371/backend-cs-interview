@@ -28,7 +28,7 @@ OOP는 사용자 입장(주 업무)에서의 프로그래밍이고 AOP는 개발
 - 왼쪽(객체지향 적으로 구현된 주 업무들), 오른쪽(추가 업무)
 
 
-OOP로 사용자에 필요한 `주 업무`를 만들었지만 상황에 따라 `성능을 위한 로그 처리`, `보안 처리`, `트랜잭션 처리` 등과 같은 `보조 업무`가 필요할 수 있다.
+OOP로 사용자에 필요한 `주 업무`를 만들었지만 상황에 따라 `성능 을 위한 로그 처리`, `보안 처리`, `트랜잭션 처리` 등과 같은 `보조 업무`가 필요할 수 있다.
 
 <div align=center>
 <img src="https://user-images.githubusercontent.com/44316546/163727752-d122e5fa-ca40-431a-83c0-745c0231ed66.png" width="700"/>
@@ -74,22 +74,28 @@ AOP 이전에는 무식하게 주 업무에 해당하는 코드 앞, 뒤로 보�
 2. Proxy객체는 `보조 업무 & 주 업무 & 보조 업무` 로 구성된다.
 3. 보조 업무 → 주 업무 → 보조 업무 순서로 작업이 실행된다.
 
-→ Proxy 객체를 통해 보조 업무와 주 업무와 관련된 코드를 분리할 수 있다.
+👉 Proxy 객체를 통해 보조 업무와 주 업무와 관련된 코드를 분리할 수 있다.
 
 과거에는 AspectJ 프레임워크로 AOP를 구현했지만 Spring을 통해 쉽게 구현할 수 있게 되었다.
 
-## Spring의 AOP
+## Spring AOP
+
+- 프록시 패턴 기반의 AOP 구현체이다. Proxy를 사용하는 이유는 접근 제어 및 부가기능을 추가하기 위해서이다.
+- **Spring Bean에만 AOP 적용가능**
+- 모든 AOP 기능을 제공하는 것이 아닌 스프링 컨테이너와 연동하여 가장 흔한 문제(중복코드, 프록시 클래스 작성의 번거로움, 객체들 간 관계 복잡도 증가)에 대한 해결책을 지원하는 것이 목적
+
+## Advice
 
 <div align=center>
 <img src="https://user-images.githubusercontent.com/44316546/163727806-880a1fad-48f7-440e-9595-0fe4593921a7.png" width="200"/>
 </div>
 
 프록시 객체에 삽입할 보조 업무의 위치에 따라 4가지의 Advice로 나뉜다
-
-- Before Advice
-- After Running Advice
-- After Throwing Advice
-- Around Advice
+- Advice란 실질적으로 부가 기능을 담은 구현체이다. 특정 JoinPoint에 Aspect가 수행하는 행위로서 `@Around, @Before, @After` 등 다양한 타입이 존재한다
+  - Before Advice
+  - After Running Advice
+  - After Throwing Advice
+  - Around Advice
 
 ## Weaving, JoinPoint, PointCut
 
@@ -97,10 +103,13 @@ AOP 이전에는 무식하게 주 업무에 해당하는 코드 앞, 뒤로 보�
 <img src="https://user-images.githubusercontent.com/44316546/163727809-1a539170-ff8c-4757-9506-3e3bc278bf8e.png" width="700"/>
 </div>
 
-프록시 객체를 통해 보조 업무와 주 업무가 실행되는 과정이 마치 뜨개질(weaving)과 비슷하다.
-
-→ 뜨개질처럼 연결해주는 과정을 `Weaving`이라고 부른다.
+프록시 객체를 통해 보조 업무와 주 업무가 실행되는 과정이 마치 뜨개질(weaving)과 비슷하다. 뜨개질처럼 연결해주는 과정을 `Weaving`이라고 부른다.
+- `Weaving` : Aspect와 대상이 되는 핵심 코드를 연결하는 프로세스. 즉, Advice(공통코드)를 핵심로직코드에 삽입하는 것
 
 Weaving을 수행할 때 보조 업무가 타겟으로 삼고 있는(=주 업무를 수행하는) 메소드를 `JoinPoint`라고 한다
+- `JoinPoint` : Advice가 적용될 수 있는 위치
 
 기본적으로 프록시는 타겟으로 삼는 Core Concern의 모든 메소드를 JoinPoint로 여긴다. 특정 JoinPoint 메소드만 Weaving이 되도록 JoinPoint를 cut하는 정보가 필요하다. 이러한 정보를 `PointCut`이라고 한다.
+- `PointCut` : Advice(부가 기능)가 적용될 대상(JoinPoint)를 선정하는 방법을 정의한 모듈, JointPoint의 상세한 스펙을 정의한 것
+
+https://dahye-jeong.gitbook.io/spring/spring/2020-04-09-aop
