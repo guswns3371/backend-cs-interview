@@ -47,7 +47,7 @@
     - 이를 해결하기위해 Rebalancing 기법 등장.
     - Rebalancing 기법을 구현한 트리 : AVL트리, Red-Black Tree
 - 배열로 표현한 이진 탐색 트리
-    - 현재 방문 노드의 index = i
+    - 현재 방문 노드의 index = `i`
     - 왼쪽 자식의 index = `2i +1`
     - 오른쪽 자식의 index = `2i + 2`
     - 부모의 index = `(i - 1) / 2`
