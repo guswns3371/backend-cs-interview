@@ -1,5 +1,8 @@
 # Index
 
+<br/>
+<br/>
+
 ## 디스크 IO
 
 > 데이터베이스의 디스크 IO 작업은 물리적인 작업이 동반되기 때문에 시간이 많이 소요된다.
@@ -27,6 +30,9 @@
 순차 IO는 랜덤 IO보다 속도가 빠르다. 하지만 현실적으로 원하는 데이터가 디스크에 순차적으로 저장되어있긴 힘들다. → 즉, `대부분의 IO는 랜덤 IO 방식으로 수행된다`
 
 따라서 데이터를 빠르게 조회하기 위해서 랜덤 IO의 빈도를 줄이는 `쿼리 튜닝`이 필요하다. (꼭 필요한 데이터만 읽도록 쿼리를 개선해야 한다)
+
+<br/>
+<br/>
 
 ## Index
 
@@ -81,149 +87,26 @@
     추가적인 작업이 동반되어 성능이 떨어지기 때문이다.
     
 
-## Index Range Scan
+<br/>
+<br/>
 
-`Index Range Scan`이란 테이블의 특정 범위의 레코드에 접근하여 스캔하는 방식이다.
+<br/>
+<br/>
 
-- sql 조건절에서 `<, >, IS NULL, BETWEEN, IN, LIKE` 등의 연산을 이용하여 검색할 때 Index Range Scan이 일어난다.
 
-> Index Range Scan 방식
-> 
-
-![Untitled](Index%204e054/Untitled.png)
-
-1. root node → branch node → leaf node 순서로 수직적 탐색을 한다.
-    - root node, branch node는 `인덱스 칼럼 값 - leaf node로 가기 위해 거쳐야할 child node 주소값`쌍의 데이터가 존재한다.
-    - leaf node에는 `인덱스 칼럼 값- 물리적 주소` 쌍의 인덱스가 저장되어 있다. 해당 칼럼 값의 물리적 주소에 접근하면  랜덤 IO가 발생하고 튜플을 검색할 수 있다.
-2. leaf node에서 탐색 시작 지점을 찾고 수평적으로 스캔한다.
-3. leaf node의 끝지점까지 읽었지만 스캔할 데이터가 남아있다면 link로 연결된 그 다음 leaf node로 이동하여 스캔을 이어간다
-4. 스캔 종료 지점에 도달하면 읽은 데이터를 반환하고 쿼리를 종료한다
-
-> Index Range Scan 의 단점 : 잦은 랜덤 IO
-> 
-
-leaf node에서 인덱스 칼럼값에 대응되는 물리적 주소로 데이터 파일을 읽을 때마다 `랜덤 IO`가 발생한다. 따라서 Index Range Scan 방식으로 **스캔해야 하는 데이터의 개수가 전체의 20 ~ 25%라면 Index Full Scan 방식이 효율적이다.**
-
-## Index Full Scan
-
-`Index Full Scan`이란 인덱스 칼럼을 처음부터 끝까지 모두 읽는 스캔 방식이다.
-
-> Index Full Scan 방식
-> 
-
-![Untitled](Index%204e054/Untitled%201.png)
-
-수직적 탐색(root node → branch node → leaf node)없이 leaf node의 첫번째 블록부터 끝까지 수평적 탐색을 한다.
-
-> Index Full Scan vs Table Full Scan
-> 
-- 인덱스의 크기가 테이블의 크기보다 훤씬 작기 때문에 Index Full Scan이 Table Full Scan보다 빠르다
-- 인덱스 선두 칼럼(탐색의 시작점)이 조건절에 없거나, 끝까지 스캔하는 경우 Table Full Scan을 고려해야 한다
-    - Index Full Scan은 랜덤 IO가 자주 발생하지만 Table Full Scan의 경우 한번에 큰 block을 긁어오기 때문에 IO가 덜 발생한다?(뇌피셜)
-- Table Full Scan보다 IO를 줄일 수 있거나 정렬된 결과를 얻으려 할 때 Index Full Scan을 고려한다.
 
 ## Index 종류
 
+3. `관리 방식(알고리즘)`에 따른 인덱스 구분 → `B-Tree Index, Hash Index, Fractal-Tree Index`
 1. `역할`에 따른 인덱스 구분 → `Clustered Index, Non-Clustered Index, Unique Index`
 2. `중복값 여부`에 따른 인덱스 구분 → `Unique Index, Non-Unique Index`
-3. `관리 방식(알고리즘)`에 따른 인덱스 구분 → `B-Tree Index, Hash Index, Fractal-Tree Index`
 
-## 📌역할에 따른 Index
+<br/>
+<br/>
 
-### `🧩 Clustered Index`
+<br/>
+<br/>
 
-테이블의 PK에만 적용되는 인덱스이다.
-
-- Clustered Index는 테이블 당 한개만 생성할 수 있다.
-- Clustered Index가 적용된 칼럼이 추가될 때마다 Data Page 전체를 재정렬한다
-- Clustered Index의 leaf page가 곧 data page이다. (leaf page에 데이터가 포함되어 있다)
-- Clustered Index로 타겟 데이터를 검색할 경우 `O(logN)`의 시간복잡도가 소요된다.
-- Unique + Not Null의 특징을 가진다
-
-> 데이터는 Clustered Index 기준으로 정렬된다
-> 
-
-테이블에 삽입되는 순서와 상관없이 **Clustered Index로 설정된 PK를 기준**으로 순차적으로 물리적 레코드에 저장된다.
-
-테이블의 PK값이 변경되면 레코드에 저장된 데이터의 물리적 위치도 new PK에 맞게 변경된다.
-
-> Clustered Index 구조
-> 
-
-![img1.daumcdn.png](Index%204e054/img1.daumcdn.png)
-
-index page에는 root node, leaf node가 있고, leaf node가 곧 data page이다.
-
-- root node는 `시작 데이터 key-data page 번호` 쌍의 데이터가 존재한다.
-    - key=6인 데이터를 찾기 위해서 `5-102` 데이터를 참조하여 102번의 data page로 이동해야 한다.
-- leaf node는 곧 data page이며 data page의 데이터들은 PK값을 기준으로 순차 정렬되어 있다.
-    - data page의 데이터는 `데이터의 key-데이터의 value` 쌍으로 이뤄져 있다.
-    - data page의 데이터들은 value를 기준으로 순차 정렬된다.
-
-> Clustered Index의 속도
-> 
-- `검색 속도` : data page의 데이터들이 값을 기준으로 정렬되어 있기 때문에 검색 속도가 Non-Clustered Index보다 빠르다
-- `입력, 수정, 삭제 속도` : 데이터를 입력, 수정, 삭제하면 data page를 재정렬해야 하므로 Non-Clustered Index보다 느리다.
-
-> Clustered Index로 설정하기에 적합하지 않은 컬럼
-> 
-
-주민등록번호처럼 법률적인 이유로 인해 PK에서 일반 칼럼으로 변경될 가능성이 있는 칼럼은 PK로 적합하지 않다.
-
-**따라서 주민등록번호처럼 PK에서 일반 칼럼으로 변경될 가능성이 있는 칼럼은 `Unique Key`로 설정하고, PK는 `auto_increment의 인조 키`로 설정하는게 바람직하다.**
-
-### `🧩 Non-Clustered Index`
-
-PK를 제외한 나머지 칼럼에 적용되는 인덱스이다.
-
-- 하나의 테이블에 여러 Non-Clustered Index를 생성할 수 있다. (남용시 성능 저하)
-- Non-Clustered Index의 data page와 실제 데이터는 독립적이다.
-- leaf page에는 실제 데이터가 아닌 데이터가 위치하는 주소가 존재한다.
-
-> Non-Clustered Index 구조
-> 
-
-![img1.daumcdn.png](Index%204e054/img1.daumcdn%201.png)
-
-- index page는 root node, leaf node가 있고, 실제 데이터는 data page에 저장된다.
-    - leaf page에는 실제 데이터가 존재하는 주소(address)가 담겨져 있다.
-    - data page에는 실제 데이터가 저장되어 있고, 정렬되어있지 않는다.
-
-> Non-Clustered Index의 속도
-> 
-- `검색 속도` : Clustered Index보다 느리다
-- `입력, 수정, 삭제 속도` : Clustered Index보다 빠르다
-
-|  | Clustered Index | Non-Clustered Index |
-| --- | --- | --- |
-| 정렬 여부 | PK의 정렬순서에 맞게 데이터 페이지가 정렬되어있다. | 정렬 순서와 상관없이 인덱스가 저장된다. |
-| 개수 | 테이블 당 오직 하나만 존재한다. | 한 테이블에 여러 개 생성할 수 있다 |
-| 검색 속도 | 데이터 페이지가 군집화 되어있고, 물리적으로 정렬되어있기 때문에 Non-Clustered Index보다 검색 속도가 빠르다 | 데이터 페이지에 접근하기 위해 여러 인덱스 페이지(root → leaf)를 거쳐야 한다. |
-| 데이터 삽입 | 테이블 속 데이터들을 정렬해야하기 때문에 insert 비용이 크다 | 별도의 공간에 인덱스를 생성해야하기 때문에 추가작업이 필요하다 |
-
-## 📌중복값 여부에 따른 Index
-
-### `🧩Unique Index`
-
-- DBMS 쿼리를 수행하는 Optimizer는 동등 조건(==)으로 Unique Index의 중복 여부를 확인한다.
-- Unique Index로 데이터를 검색할 경우, Optimizer가 동등 조건으로 타겟 데이터를 탐색한다. 찾았다면 탐색을 멈춘다. 왜냐하면 테이블의 Unique Index는 오직 한개 뿐이기 때문이다.
-
-> Primary Key(PK)와 Unique Index 비교
-> 
-
-|   | Primary Key | Unique Index |
-| --- | --- | --- |
-| 목적 | Constraint + Index | Index |
-| 공통점 | 유일성 보장 | 유일성 보장 |
-| 참조 무결성 | PK/FK에 의해 지정 가능 | 지정 불가능 |
-| 테이블당 개수 | 1개만 가능 | 여러 개 가능 |
-| 인덱스 생성 | Unique Index 생성 | Unique Index 생성 |
-| 역공학 적용시 | PK 인식 가능 | PK인식 불가능 |
-| Null 허용 | 허용 안됨 | 허용됨 |
-
-### `🧩Non-Unique Index`
-
-Unique 인덱스가 아닌 인덱스들이다.
 
 ## 📌관리 방식(알고리즘)에 따른 Index
 
@@ -277,6 +160,9 @@ B-Tree Index보다 검색 속도가 매우 빠르다 → O(1)
 > 
 
 Hash Index의 경우 동등 연산에만 특화된 자료구조이므로 부등호 연산 `<, >, ≥ , ≤`시 문제가 발생한다. 이러한 이유로 index 관리에 Hash가 아닌 B-Tree 자료구조를 사용한다.
+
+<br/>
+<br/>
 
 ## 왜 B-Tree 로 데이터베이스 인덱스를 관리할까?
 
@@ -355,6 +241,168 @@ B+Tree는 B-Tree의 leaf node들을 LinkedList로 연결한 것이다. LinkedLis
 | 시퀀셜 엑세스 탐색 방식 | 모든 key가 리프노드에 존재하지 않기 때문에 모든 노드를 탐색해야 함 | 모든 key가 리프노드에 존재하기 때문에 리프 노드 레벨에서 탐색하면 됨 |
 | 키 중복여부 | 모든 노드는 서로 다른 key를 지님 | 부모 노드와 자식 노드가 같은 key를 가질 수 있음 |
 | 링크드 리스트 | 존재하지 않음 | 리프 노드는 링크드 리스트로 연결되어 있음 |
+
+<br/>
+<br/>
+
+<br/>
+<br/>
+
+## 📌역할에 따른 Index
+
+### `🧩 Clustered Index`
+
+테이블의 PK에만 적용되는 인덱스이다.
+
+- Clustered Index는 테이블 당 한개만 생성할 수 있다.
+- Clustered Index가 적용된 칼럼이 추가될 때마다 Data Page 전체를 재정렬한다
+- Clustered Index의 leaf page가 곧 data page이다. (leaf page에 데이터가 포함되어 있다)
+- Clustered Index로 타겟 데이터를 검색할 경우 `O(logN)`의 시간복잡도가 소요된다.
+- Unique + Not Null의 특징을 가진다
+
+> 데이터는 Clustered Index 기준으로 정렬된다
+> 
+
+테이블에 삽입되는 순서와 상관없이 **Clustered Index로 설정된 PK를 기준**으로 순차적으로 물리적 레코드에 저장된다.
+
+테이블의 PK값이 변경되면 레코드에 저장된 데이터의 물리적 위치도 new PK에 맞게 변경된다.
+
+> Clustered Index 구조
+> 
+
+![img1.daumcdn.png](Index%204e054/img1.daumcdn.png)
+
+index page에는 root node, leaf node가 있고, leaf node가 곧 data page이다.
+
+- root node는 `시작 데이터 key-data page 번호` 쌍의 데이터가 존재한다.
+    - key=6인 데이터를 찾기 위해서 `5-102` 데이터를 참조하여 102번의 data page로 이동해야 한다.
+- leaf node는 곧 data page이며 data page의 데이터들은 PK값을 기준으로 순차 정렬되어 있다.
+    - data page의 데이터는 `데이터의 key-데이터의 value` 쌍으로 이뤄져 있다.
+    - data page의 데이터들은 value를 기준으로 순차 정렬된다.
+
+> Clustered Index의 속도
+> 
+- `검색 속도` : data page의 데이터들이 값을 기준으로 정렬되어 있기 때문에 검색 속도가 Non-Clustered Index보다 빠르다
+- `입력, 수정, 삭제 속도` : 데이터를 입력, 수정, 삭제하면 data page를 재정렬해야 하므로 Non-Clustered Index보다 느리다.
+
+> Clustered Index로 설정하기에 적합하지 않은 컬럼
+> 
+
+주민등록번호처럼 법률적인 이유로 인해 PK에서 일반 칼럼으로 변경될 가능성이 있는 칼럼은 PK로 적합하지 않다.
+
+**따라서 주민등록번호처럼 PK에서 일반 칼럼으로 변경될 가능성이 있는 칼럼은 `Unique Key`로 설정하고, PK는 `auto_increment의 인조 키`로 설정하는게 바람직하다.**
+
+### `🧩 Non-Clustered Index`
+
+PK를 제외한 나머지 칼럼에 적용되는 인덱스이다.
+
+- 하나의 테이블에 여러 Non-Clustered Index를 생성할 수 있다. (남용시 성능 저하)
+- Non-Clustered Index의 data page와 실제 데이터는 독립적이다.
+- leaf page에는 실제 데이터가 아닌 데이터가 위치하는 주소가 존재한다.
+
+> Non-Clustered Index 구조
+> 
+
+![img1.daumcdn.png](Index%204e054/img1.daumcdn%201.png)
+
+- index page는 root node, leaf node가 있고, 실제 데이터는 data page에 저장된다.
+    - leaf page에는 실제 데이터가 존재하는 주소(address)가 담겨져 있다.
+    - data page에는 실제 데이터가 저장되어 있고, 정렬되어있지 않는다.
+
+> Non-Clustered Index의 속도
+> 
+- `검색 속도` : Clustered Index보다 느리다
+- `입력, 수정, 삭제 속도` : Clustered Index보다 빠르다
+
+|  | Clustered Index | Non-Clustered Index |
+| --- | --- | --- |
+| 정렬 여부 | PK의 정렬순서에 맞게 데이터 페이지가 정렬되어있다. | 정렬 순서와 상관없이 인덱스가 저장된다. |
+| 개수 | 테이블 당 오직 하나만 존재한다. | 한 테이블에 여러 개 생성할 수 있다 |
+| 검색 속도 | 데이터 페이지가 군집화 되어있고, 물리적으로 정렬되어있기 때문에 Non-Clustered Index보다 검색 속도가 빠르다 | 데이터 페이지에 접근하기 위해 여러 인덱스 페이지(root → leaf)를 거쳐야 한다. |
+| 데이터 삽입 | 테이블 속 데이터들을 정렬해야하기 때문에 insert 비용이 크다 | 별도의 공간에 인덱스를 생성해야하기 때문에 추가작업이 필요하다 |
+
+<br/>
+<br/>
+
+<br/>
+<br/>
+
+## 📌중복값 여부에 따른 Index
+
+### `🧩Unique Index`
+
+- DBMS 쿼리를 수행하는 Optimizer는 동등 조건(==)으로 Unique Index의 중복 여부를 확인한다.
+- Unique Index로 데이터를 검색할 경우, Optimizer가 동등 조건으로 타겟 데이터를 탐색한다. 찾았다면 탐색을 멈춘다. 왜냐하면 테이블의 Unique Index는 오직 한개 뿐이기 때문이다.
+
+> Primary Key(PK)와 Unique Index 비교
+> 
+
+|   | Primary Key | Unique Index |
+| --- | --- | --- |
+| 목적 | Constraint + Index | Index |
+| 공통점 | 유일성 보장 | 유일성 보장 |
+| 참조 무결성 | PK/FK에 의해 지정 가능 | 지정 불가능 |
+| 테이블당 개수 | 1개만 가능 | 여러 개 가능 |
+| 인덱스 생성 | Unique Index 생성 | Unique Index 생성 |
+| 역공학 적용시 | PK 인식 가능 | PK인식 불가능 |
+| Null 허용 | 허용 안됨 | 허용됨 |
+
+### `🧩Non-Unique Index`
+
+Unique 인덱스가 아닌 인덱스들이다.
+
+
+<br/>
+<br/>
+
+<br/>
+<br/>
+
+## Index를 활용한 데이터 검색
+
+### Index Full Scan
+
+`Index Full Scan`이란 인덱스 칼럼을 처음부터 끝까지 모두 읽는 스캔 방식이다.
+
+> Index Full Scan 방식
+> 
+
+![Untitled](Index%204e054/Untitled%201.png)
+
+수직적 탐색(root node → branch node → leaf node)없이 leaf node의 첫번째 블록부터 끝까지 수평적 탐색을 한다.
+
+> Index Full Scan vs Table Full Scan
+> 
+- 인덱스의 크기가 테이블의 크기보다 훤씬 작기 때문에 Index Full Scan이 Table Full Scan보다 빠르다
+- 인덱스 선두 칼럼(탐색의 시작점)이 조건절에 없거나, 끝까지 스캔하는 경우 Table Full Scan을 고려해야 한다
+    - Index Full Scan은 랜덤 IO가 자주 발생하지만 Table Full Scan의 경우 한번에 큰 block을 긁어오기 때문에 IO가 덜 발생한다?(뇌피셜)
+- Table Full Scan보다 IO를 줄일 수 있거나 정렬된 결과를 얻으려 할 때 Index Full Scan을 고려한다.
+
+## Index Range Scan
+
+`Index Range Scan`이란 테이블의 특정 범위의 레코드에 접근하여 스캔하는 방식이다.
+
+- sql 조건절에서 `<, >, IS NULL, BETWEEN, IN, LIKE` 등의 연산을 이용하여 검색할 때 Index Range Scan이 일어난다.
+
+> Index Range Scan 방식
+> 
+
+![Untitled](Index%204e054/Untitled.png)
+
+1. root node → branch node → leaf node 순서로 수직적 탐색을 한다.
+    - root node, branch node는 `인덱스 칼럼 값 - leaf node로 가기 위해 거쳐야할 child node 주소값`쌍의 데이터가 존재한다.
+    - leaf node에는 `인덱스 칼럼 값- 물리적 주소` 쌍의 인덱스가 저장되어 있다. 해당 칼럼 값의 물리적 주소에 접근하면  랜덤 IO가 발생하고 튜플을 검색할 수 있다.
+2. leaf node에서 탐색 시작 지점을 찾고 수평적으로 스캔한다.
+3. leaf node의 끝지점까지 읽었지만 스캔할 데이터가 남아있다면 link로 연결된 그 다음 leaf node로 이동하여 스캔을 이어간다
+4. 스캔 종료 지점에 도달하면 읽은 데이터를 반환하고 쿼리를 종료한다
+
+> Index Range Scan 의 단점 : 잦은 랜덤 IO
+> 
+
+leaf node에서 인덱스 칼럼값에 대응되는 물리적 주소로 데이터 파일을 읽을 때마다 `랜덤 IO`가 발생한다. 따라서 Index Range Scan 방식으로 **스캔해야 하는 데이터의 개수가 전체의 20 ~ 25%라면 Index Full Scan 방식이 효율적이다.**
+
+<br/>
+<br/>
 
 ## Hint
 
