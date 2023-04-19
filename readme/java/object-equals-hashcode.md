@@ -10,7 +10,7 @@
 
 Object 클래스는 배열을 포함한 자바의 모든 클래스의 super 클래스이다. 이때, Object의 equals()는 클래스 객체의 참조값에 대한 동등성을 판단하는 메소드이다. <mark style="background-color:yellow;">**만약 클래스에서 equals() 메소드를 재정의할 경우, hashCode() 메소드도 함께 재정의해야한다. equals() 로 동일하다 여겨지는 두 객체는 hashCode() 값 또한 동일해야하기 때문이다.**</mark>
 
-자바에서 equals() 메소드를 통해 동등성(`equality`) 비교를 한다. 동등성 비교란 객체의 주소값이 아닌 표현 데이터가 동일한지 비교하는 것이다. 비슷한 개념으로 동일성(`==`)은 객체의 주소값을 비교하는 것이다.
+equals() 메소드를 통해 동등성(`equality`) 비교를 할  수 있다. 동등성 비교란 객체의 주소값이 아닌 표현 데이터가 동일한지 비교하는 것이다. 비슷한 개념으로 동일성(`==`) 비교라는 개념이 존재한다. 이는   객체의 주소값을 비교하는 것이다.
 
 ## hashCode()
 
@@ -22,7 +22,9 @@ hashCode()란 객체의 해시코드 값을 반환한다. 이 메소드를 통�
 
 > As much as is reasonably practical, the hashCode method defined by class Object does return distinct integers for distinct objects. (The hashCode may or may not be implemented as some function of an object's memory address at some point in time.)
 
-Object의 hashCode는 객체마다 유일한 해시코드값을 반환한다. `x.equals(y) == true` 라면 x,y의 hashCode값이 같아야 한다. (`x.equals(y) == false` 이지만, x,y의 hashCode값이 같을 수 있지만, 서로 다른 고유한 값을 반환하도록 hashCode 메소드를 정의해야 Hash Table의 성능을 향상시킬 수 있다.)
+Object의 hashCode는 객체마다 유일한 해시코드값을 반환한다. `x.equals(y) == true` 라면 x,y의 hashCode값이 같아야 한다.
+
+`x.equals(y) == false` 이어도 x,y의 hashCode값이 같을 수 있다. 하지만 Hash Table의 성능을 향상시키기 위해선  서로 다른 고유한 값을 반환하도록 hashCode 메소드를 정의해야 한다.
 
 
 
