@@ -1,7 +1,5 @@
 # backend-cs-interview
 
-[GitBook](https://guswns3371.gitbook.io/backend-cs-interview-2/)
-
 `guswns@github ▶ guswns3371/backend-cs-interview ▶` tree .\
 .\
 └── backend-cs-interview\
