@@ -14,7 +14,7 @@ equals() 메소드를 통해 동등성(`equality`) 비교를 할  수 있다. �
 
 ## hashCode()
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption><p>Object.java</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>Object.java</p></figcaption></figure>
 
 > Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.
 
