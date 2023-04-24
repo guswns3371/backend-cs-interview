@@ -1,7 +1,6 @@
 # Table of contents
 
 * [backend-cs-interview](README.md)
-  * [Algorithm](Algorithm/README.md)
   * [DB](readme/db/README.md)
     * [데이터베이스](DB/데이터베이스.md)
     * [RDBMS vs NoSQL](<DB/RDBMS vs NoSQL.md>)
@@ -26,6 +25,7 @@
     * [Object의 equals(), hashCode() 메소드](readme/java/object-equals-hashcode.md)
     * [StringBuilder vs StringBuffer](readme/java/stringbuilder-vs-stringbuffer.md)
     * [System.out.println 메소드](readme/java/system.out.println.md)
+    * [ArrayList의 구현](readme/java/arraylist.md)
   * [Network](readme/network/README.md)
     * [HTTP Method](<Network/HTTP Method.md>)
     * [Rest & RestAPI](<Network/Rest & RestAPI.md>)
