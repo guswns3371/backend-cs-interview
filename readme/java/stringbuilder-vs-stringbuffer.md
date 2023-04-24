@@ -134,7 +134,7 @@
 
 ## StringBuffer
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (2).png" alt=""><figcaption></figcaption></figure>
 
 StringBuffer는 thread-safe한 변경 가능한 문자열 시퀀스이다. 내부 메소드는 필요한 경우에 동기화되므로 개별 스레드에서 수행한 메소드 호출 순서와 일치하는 일련의 순서로 작업이 진행된다.
 
@@ -256,4 +256,4 @@ class MainTest {
 
 <figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
-문자열 ":" 을 100,000,000번 append했을 때, StringBuilder가 시간 및 메모리 측면에서 StringBuffer보다 월등히 좋다. 당연한 결과이다. <mark style="background-color:orange;">StringBuffer는 synchronized 키워드로 인해</mark> <mark style="background-color:orange;"></mark><mark style="background-color:orange;">**동시성 제어를 위한 작업(코드 순서 보장, thread lock/unlock 보장)**</mark><mark style="background-color:orange;">이 추가되어 싱글 스레드 환경일지라도 StringBuilder보다 성능이 안 좋다.</mark>
+문자열을 100,000,000번 append했을 때, StringBuilder가 시간 및 메모리 측면에서 StringBuffer보다 월등히 좋다. 당연한 결과이다. <mark style="background-color:orange;">StringBuffer는 synchronized 키워드로 인해</mark> <mark style="background-color:orange;"></mark><mark style="background-color:orange;">**동시성 제어를 위한 작업(코드 순서 보장, thread lock/unlock 보장)**</mark><mark style="background-color:orange;">이 추가되어 싱글 스레드 환경일지라도 StringBuilder보다 성능이 안 좋다.</mark>

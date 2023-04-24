@@ -30,7 +30,7 @@ Object의 hashCode는 객체마다 유일한 해시코드값을 반환한다. `x
 
 {% tabs %}
 {% tab title="System.identityHashCode" %}
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption><p>System.java</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption><p>System.java</p></figcaption></figure>
 
 System.identityHashCode()는 특정 클래스에서 hashCode()가 재정의되어있더라도 Object의 hashCode()으로 해시 코드 값을 반환하는 메소드이다. `System.identityHashCode(null) == 0` 이다.
 {% endtab %}
