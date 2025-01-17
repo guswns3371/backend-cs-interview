@@ -1,6 +1,8 @@
 # Table of contents
 
 * [backend-cs-interview](README.md)
+  * [생각해볼 문제](readme/undefined/README.md)
+    * [웹소켓 메시지 퍼블리싱](readme/undefined/undefined.md)
   * [DB](readme/db/README.md)
     * [데이터베이스](DB/데이터베이스.md)
     * [RDBMS vs NoSQL](<DB/RDBMS vs NoSQL.md>)

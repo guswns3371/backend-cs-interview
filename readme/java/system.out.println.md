@@ -77,7 +77,7 @@ io 작업을 blocking 방식으로 구현한 blocking io는 하나의 클라이�
 
 {% embed url="http://mwultong.blogspot.com/2007/01/java-systemerrprintln-outprint.html" %}
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (2).png" alt=""><figcaption></figcaption></figure>
 
 `out` : 자체 buffer를 통해 flush할 때 메시지를 한번에 출력한다. 메시지를 콘솔 및 파일로 출력할 수 있다.
 

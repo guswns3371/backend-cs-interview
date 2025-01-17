@@ -134,7 +134,7 @@
 
 ## StringBuffer
 
-<figure><img src="../../.gitbook/assets/image (1) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 StringBuffer는 thread-safe한 변경 가능한 문자열 시퀀스이다. 내부 메소드는 필요한 경우에 동기화되므로 개별 스레드에서 수행한 메소드 호출 순서와 일치하는 일련의 순서로 작업이 진행된다.
 
