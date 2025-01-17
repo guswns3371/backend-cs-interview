@@ -2,7 +2,7 @@
 
 * [backend-cs-interview](README.md)
   * [생각해볼 문제](readme/think/README.md)
-    * [웹소켓 메시지 퍼블리싱](readme/think/websocket publish.md)
+    * [웹소켓 메시지 퍼블리싱](<readme/think/websocket publish.md>)
   * [DB](readme/db/README.md)
     * [데이터베이스](readme/db/데이터베이스.md)
     * [RDBMS vs NoSQL](<readme/db/RDBMS vs NoSQL.md>)
