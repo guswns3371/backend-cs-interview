@@ -51,7 +51,7 @@ OAuth1.0은 절차가 복잡하고 앱에서 사용하기 곤란하다는 단점
 
 `AccessToken, RefreshToken 발급`
 
-![0_PEQup7rNn8Ti00ky.png](OAuth%203ae5b/0_PEQup7rNn8Ti00ky.png)
+![0_PEQup7rNn8Ti00ky.png](OAuth 3ae5b/0_PEQup7rNn8Ti00ky.png)
 
 1. OAuth 로그인을 위해 Authorization Sever에 자신의 서비스를 등록한다
 2. Authorization Server는 해당 서비스에 Client Id, Client Secret을 부여하고, 서비스 개발자는 Redirect URL과 Scope를 설정한다
@@ -77,7 +77,7 @@ OAuth1.0은 절차가 복잡하고 앱에서 사용하기 곤란하다는 단점
 
 `AccessToken 만료 시`
 
-![0_KOqKaoLdAO7Iolw8.png](OAuth%203ae5b/0_KOqKaoLdAO7Iolw8.png)
+![0_KOqKaoLdAO7Iolw8.png](OAuth 3ae5b/0_KOqKaoLdAO7Iolw8.png)
 
 1. 백엔드서버(클라이언트)가 만료된 AccessToken으로 Resource Server에 접근하면 401 에러가 발생한다.
 2. 백엔드서버(클라이언트)는 보관중인 RefreshToken을 Auth Server로 전달한다
@@ -98,7 +98,7 @@ OAuth1.0은 절차가 복잡하고 앱에서 사용하기 곤란하다는 단점
 
 ## OpenID Connect(OIDC)
 
-![Screen Shot 2020-12-14 at 10.20.24 PM.png](OAuth%203ae5b/Screen_Shot_2020-12-14_at_10.20.24_PM.png)
+![Screen Shot 2020-12-14 at 10.20.24 PM.png](OAuth 3ae5b/Screen_Shot_2020-12-14_at_10.20.24_PM.png)
 
 `OpenID Connect(OIDC)` 는 OAuth2.0 프로토콜의 인증(Authentication)을 담당하는 계층이다.
 
@@ -108,18 +108,18 @@ OAuth1.0은 절차가 복잡하고 앱에서 사용하기 곤란하다는 단점
 > OpenID Connect의 flow
 > 
 
-![1_vo7DtARltqnys11DW8vboA.png](OAuth%203ae5b/1_vo7DtARltqnys11DW8vboA.png)
+![1_vo7DtARltqnys11DW8vboA.png](OAuth 3ae5b/1_vo7DtARltqnys11DW8vboA.png)
 
 scope에 `openid` 를 설정하고, Authorization Server로부터 `AccessToken`과 함께 `ID Token`을 받는것 말고는 OAuth2.0 flow와 동일하다.
 
 > ID Token과 AccessToken 차이점 ([ID Token vs AccessToken](https://auth0.com/blog/id-token-access-token-what-is-the-difference/))
 > 
 
-![Untitled](OAuth%203ae5b/Untitled.png)
+![Untitled](OAuth 3ae5b/Untitled.png)
 
-![Untitled](OAuth%203ae5b/Untitled%201.png)
+![Untitled](OAuth 3ae5b/Untitled 1.png)
 
-![Untitled](OAuth%203ae5b/Untitled%202.png)
+![Untitled](OAuth 3ae5b/Untitled 2.png)
 
 >📎 ID Token은 사용자 인증용 토큰이고, AccessToken은 구글, 네이버의 자원에 접근하기 위해 사용되는 토큰이다. (인증 → ID Token, 인가 → AccessToken)
 >

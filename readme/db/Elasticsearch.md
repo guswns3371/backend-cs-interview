@@ -2,7 +2,7 @@
 
 ## Elasticsearch(ES)
 
-![elasticsearch.png](Elasticsea%20a708c/elasticsearch.png)
+![elasticsearch.png](Elasticsea a708c/elasticsearch.png)
 
 > ES는 프로그램으로서의 검색 엔진이다.
 > 
@@ -17,13 +17,13 @@
 > 색인과 역색인(Inverted-Index)
 > 
 
-![img1.daumcdn.jpg](Elasticsea%20a708c/img1.daumcdn.jpg)
+![img1.daumcdn.jpg](Elasticsea a708c/img1.daumcdn.jpg)
 
 `색인` : 검색 속도를 빠르게 하기 위해 특정 데이터의 위치를 저장해두는 기법
 
 - 국어사전에서 단어 순의 첫번째 단어마다 갈피를 만드는 과정이 색인이다. (데이터의 위치를 순서대로 기억)
 
-![img1.daumcdn.jpg](Elasticsea%20a708c/img1.daumcdn%201.jpg)
+![img1.daumcdn.jpg](Elasticsea a708c/img1.daumcdn 1.jpg)
 
 `역색인` : 데이터 색인시 단어를 기준으로 색인을 수행하는 기법
 
@@ -81,13 +81,13 @@
 > RDBMS와 ES의 데이터 저장 방식 차이
 > 
 
-![esvsrdb.png](Elasticsea%20a708c/esvsrdb.png)
+![esvsrdb.png](Elasticsea a708c/esvsrdb.png)
 
 `RDMBS는 데이터(문장)를 행에 저장하여 행을 기준으로 탐색한다.`
 
 - 저장된 데이터가 많을 수록 탐색해야 할 데이터가 많아지기 때문에 검색 속도가 느려진다.
 
-![invertedIndex.png](Elasticsea%20a708c/invertedIndex.png)
+![invertedIndex.png](Elasticsea a708c/invertedIndex.png)
 
 `ES는 데이터(문장)를 역색인하여 단어로 저장하기 때문에 역색인을 기준으로 탐색한다.`
 
@@ -98,7 +98,7 @@
 > ES와 RDBMS 용어 차이
 > 
 
-![elasticsearch-db.jpg](Elasticsea%20a708c/elasticsearch-db.jpg)
+![elasticsearch-db.jpg](Elasticsea a708c/elasticsearch-db.jpg)
 
 | ES | RDBMS |
 | --- | --- |
@@ -112,7 +112,7 @@
 
 ## ES의 구조
 
-![Untitled](Elasticsea%20a708c/Untitled.png)
+![Untitled](Elasticsea a708c/Untitled.png)
 
 ES는 분산 시스템 구조이며 여러 개의 Node로 이루어져있다. 각 Node는 Index(RDB의 데이터베이스)으로 이루어져있다. 각 Index는 Shard로 구분된다. Shard에는 원본 데이터가 저장되는 Primary Shard와 복제 데이터가 저장되는 Replica Shard가 있다.
 
@@ -128,7 +128,7 @@ ES는 분산 시스템 구조이며 여러 개의 Node로 이루어져있다. �
     - cluster에 관련된 요청은 master node로, 데이터에 관련된 요청은 data node로 분기처리 해준다 (Round Robin 방식을 사용)
 4. `Ingest Node` : document의 전처리 작업을 수행하는 노드이다.
 
-![0_p6W7hmlErtczICVW.png](Elasticsea%20a708c/0_p6W7hmlErtczICVW.png)
+![0_p6W7hmlErtczICVW.png](Elasticsea a708c/0_p6W7hmlErtczICVW.png)
 
 ### `Document`
 

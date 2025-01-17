@@ -132,7 +132,7 @@ CPU burst가 짧은 프로세스에게 우선적으로 CPU 제어권을 할당�
 
 ### `Multi Level Queue`
 
-![Untitled](CPUScheduling/Untitled%201.png)
+![Untitled](CPUScheduling/Untitled 1.png)
 
 여러 프로세스의 특성에 맞는 Ready Queue들을 여러 개 둔다. 이후 Ready Queue마다 우선순위를 매긴다.
 

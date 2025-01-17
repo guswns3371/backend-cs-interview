@@ -61,7 +61,7 @@ Upgrade-Insecure-Requests: 1
 
 ### HTTP Method 속성
 
-![116953577-9816cd80-acc8-11eb-8fb8-53ab3033291d.png](HTTP%20Metho%20ac839/116953577-9816cd80-acc8-11eb-8fb8-53ab3033291d.png)
+![116953577-9816cd80-acc8-11eb-8fb8-53ab3033291d.png](HTTP Metho ac839/116953577-9816cd80-acc8-11eb-8fb8-53ab3033291d.png)
 
 - `안전성`
     - 해당 HTTP 메소드를 호출해도 자원의 내용이 변경되지 않는 특성

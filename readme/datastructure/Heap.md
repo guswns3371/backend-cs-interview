@@ -43,11 +43,11 @@
     
     `삽입 과정`
     
-    ![3.png](Heap%204499f/3.png)
+    ![3.png](Heap 4499f/3.png)
     
     `삭제 과정`
     
-    ![4.png](Heap%204499f/4.png)
+    ![4.png](Heap 4499f/4.png)
     
 - 최소 힙 구현
     

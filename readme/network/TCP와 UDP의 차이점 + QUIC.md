@@ -28,7 +28,7 @@
 
 ### TCP 헤더
 
-![tcpheader.png](TCP%203,%204-w%20bb0c2/tcpheader.png)
+![tcpheader.png](TCP 3, 4-w bb0c2/tcpheader.png)
 
 `Sequence Number, Acknowledgement Number, Flag Bit`
 

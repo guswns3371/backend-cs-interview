@@ -2,7 +2,7 @@
 
 ## TCP 헤더
 
-![tcpheader.png](TCP%203,%204-w%20bb0c2/tcpheader.png)
+![tcpheader.png](TCP 3, 4-w bb0c2/tcpheader.png)
 
 - TCP 헤더의 flag bit(code bit, control bit)
     - `ACK` : 상대방으로부터 패킷을 받았다는 것을 알려주는 패킷(클라이언트가 보낸 최초의 SYN 패킷 이후에 전송되는 모든 패킷에 ACK 플래그 비트가 1로 설정되어야 함)
@@ -14,7 +14,7 @@
 
 클라이언트와 서버가 패킷을 주고 받으며 TCP connection을 수립하는 과정이다.
 
-![img1.daumcdn.jpg](TCP%203,%204-w%20bb0c2/img1.daumcdn.jpg)
+![img1.daumcdn.jpg](TCP 3, 4-w bb0c2/img1.daumcdn.jpg)
 
 1. 클라이언트(`SYN(x)`) → 서버
     
@@ -39,7 +39,7 @@
 
 TCP connection을 해제하는 과정이다.
 
-![img1.daumcdn.jpg](TCP%203,%204-w%20bb0c2/img1.daumcdn%201.jpg)
+![img1.daumcdn.jpg](TCP 3, 4-w bb0c2/img1.daumcdn 1.jpg)
 
 1. 클라이언트(`FIN(x)`) → 서버
     

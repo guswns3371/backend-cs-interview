@@ -39,7 +39,7 @@
 
 ## Binary Search Tree(BST, 이진탐색트리)
 
-![Untitled](Tree%206c73d/Untitled.png)
+![Untitled](Tree 6c73d/Untitled.png)
 
 - `왼쪽 자식 < 부모 < 오른쪽 자식` 인 이진탐색
 - 균형 잡힌 이진탐색트리의 탐색,삽입,삭제 → `O(logN)`

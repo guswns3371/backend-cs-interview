@@ -68,6 +68,6 @@ HTTP 프로토콜의 소켓 통신 계층을 SSL/TLS으로 대체한 프로토�
     - 사실 HTTP보다 HTTPS가 느린것은 당연하다. 중간에 핸드셰이크와 데이터 암복호화가 이루어져있기 때문이다.
     - 하지만 HTTP/2.0은 멀티 플렉싱, 동시 처리, 헤더 압축, server push 및 stream dependency의 기능을 수행할 수 있기 때문에 ...
     
-    ![Untitled](HTTP%20&%20HTT%20ed4a6/Untitled.png)
+    ![Untitled](HTTP & HTT ed4a6/Untitled.png)
     
-    ![Untitled](HTTP%20&%20HTT%20ed4a6/Untitled%201.png)
+    ![Untitled](HTTP & HTT ed4a6/Untitled 1.png)

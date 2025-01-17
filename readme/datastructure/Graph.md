@@ -9,7 +9,7 @@
 
 ## 그래프와 트리의 차이
 
-![Untitled](Graph%20c0aee/Untitled.png)
+![Untitled](Graph c0aee/Untitled.png)
 
 ## 그래프 관련 용어
 
@@ -56,7 +56,7 @@
 
 인접행렬 방식 & 인접리스트 방식으로 그래프를 표현할 수 있음
 
-![3.png](Graph%20c0aee/3.png)
+![3.png](Graph c0aee/3.png)
 
 - 인접 행렬(adjacency matrix) : 2차원 배열로 그래프의 연결 관계를 표현하는 방식
     - 정점 a,b가 서로 인접하다면(하나의 간선으로 연결되어 있다면) → `행렬[a][b] = 1` , 인접하지 않다면 → `행렬[a][b] = 0`
@@ -68,7 +68,7 @@
         - 간선의 수와 무관하게 `n^2` 의 메모리 공간이 필요 → 메모리 공간 낭비가 큼
         - 특정 정점과 인접한 정점들을 찾기 위해 행 전체를 순회해야 함 → `O(N)` (인접하지 않는 노드까지 탐색해야 함)
 
-![4.png](Graph%20c0aee/4.png)
+![4.png](Graph c0aee/4.png)
 
 - 인접 리스트(adjacency list) : 리스트로 그래프의 연결 관계를 표현하는 방식
     - 장점
@@ -84,7 +84,7 @@
 
 - dfs는 스택으로 구현할 수 있음
 
-![Untitled](Graph%20c0aee/Untitled%201.png)
+![Untitled](Graph c0aee/Untitled 1.png)
 
 ```python
 def dfs(graph, v, visited):
@@ -109,7 +109,7 @@ dfs(graph, 1, visited)
 
 - bfs는 queue로 구현할 수 있음
 
-![Untitled](Graph%20c0aee/Untitled%202.png)
+![Untitled](Graph c0aee/Untitled 2.png)
 
 ```python
 from collections import deque

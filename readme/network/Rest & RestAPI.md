@@ -54,7 +54,7 @@ REST의 기본 6원칙을 지키는 것을 RESTful하다고 표현한다.
     
     - Uniform Interface의 4가지 제약조건
         
-        ![uniform_interface-1.png](Rest%20&%20Res%203a70a/uniform_interface-1.png)
+        ![uniform_interface-1.png](Rest & Res 3a70a/uniform_interface-1.png)
         
         1. `Identification of Resources` → 자원을 URI로 식별
         2. `Manipulation of Resources Through Representations` → 자원 조작의 결과를 JSON 등으로 표현
