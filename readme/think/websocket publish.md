@@ -1,5 +1,3 @@
-# 웹소켓 메시지 퍼블리싱
-
 # kafka
 
 ![Image](https://github.com/user-attachments/assets/0712a8f9-21f2-44d7-b332-072723c25fc6)
